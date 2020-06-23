@@ -78,7 +78,7 @@ def checkNumberInt(value):
         return checkNumberInt(newNum)
 
 def game_start():                 #2 wins
-    for i in range(3):
+    for i in range(3): # Total 3 games
         scores = 0
         user_Blood = attribute_01[My_teams[i]][0]
         enemy_Blood = attribute_02[enemy_teams[i]][0]
