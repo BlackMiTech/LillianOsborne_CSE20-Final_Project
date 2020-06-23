@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# --- Version:0.0.3--- #
+# --- Version:0.0.4--- #
 '''
 Title:
 Author:Jimmy Wang
@@ -153,8 +153,6 @@ def endProgram():
     return
 
 name = input("Please input your name:")
-age = input("{},please input your age: ".format(name))
-user_info = {"name": name, "age": int(age)}  # User Information
 randomgold = random.randint(5, 500)
 
 
@@ -162,20 +160,24 @@ randomgold = random.randint(5, 500)
 if name == str("test"):
     gold = 1000000000000000 # test
     AK47 = 1
-    Hemostatic = 10000000000
+    Hemostatic = 1
     Balisong = 1
-
-# Give different initial gold coins according to user's age
-elif 10 < user_info['age'] < 18:
-    gold = 1000 + randomgold
-elif 18 <= user_info['age'] <= 30:
-    gold = 1500 + randomgold
+    Hemostatic_num = 99999999
+    age = -1
 else:
-    gold = 500 + randomgold
-user_info['gold'] = gold
+    age = input("{},please input your age: ".format(name))
+    user_info = {"name": name, "age": int(age)}  # User Information
+    # Give different initial gold coins according to user's age
+    if 10 < user_info['age'] < 18:
+        gold = 1000 + randomgold
+    elif 18 <= user_info['age'] <= 30:
+        gold = 1500 + randomgold
+    else:
+        gold = 500 + randomgold
+    user_info['gold'] = gold
 
 
-
+# --- Program Start --- #
 while start:
     start = False
     print("Welcome to Kingdom & Unions War.")
@@ -217,7 +219,9 @@ while start:
             """)
             charge = checkNumberInt(input("> "))
             if charge == str("C"):
+                print("-------------------------------------")
                 print("This function has not been added yet.")
+                print("-------------------------------------")
                 start = True
                 endProgram()
             elif charge == int("568052318"): # test for the balance
@@ -258,6 +262,8 @@ while start:
                 print("Balisong(Butterfly knife)")
             if Hemostatic == 1:
                 print("Hemostatic agent x", Hemostatic_num)
+            start = True
+            endProgram()
     elif mode == int("3"):
         print("--------------------------")
         print("Hello,", name, "welcome to the BLACK Store.")
@@ -301,7 +307,7 @@ while start:
                 start = True
                 endProgram()
         if store_buy == int("3"):
-            gold = gold - 50 
+            gold = gold - 50
             if gold <= 0:
                 print("Your account balance is not enough to buy this!")
                 gold = gold + 50  # If balance is not enough, then add the gold back
