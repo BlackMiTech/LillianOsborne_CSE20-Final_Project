@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# --- Version:0.0.5--- #
+# --- Version:0.0.6--- #
 '''
 Title: Kingdom & Unions War.
 Author:Jimmy Wang
@@ -295,7 +295,7 @@ while start:
                 start = True
                 endProgram()
         if store_buy == int("2"):
-            if AK47 == 0:
+            if AK47 == 0:   # if ak is not in stock, then buy it
                 gold = gold - 3000
                 if gold <= 0:
                     print("Your account balance is not enough to buy this!")
@@ -312,13 +312,18 @@ while start:
                 start = True
                 endProgram()
         if store_buy == int("3"):
-            gold = gold - 58
+            print("How Much You Want To Buy?")
+            Hemostatic_buy_num = checkNumberInt(input(" >"))
+            gold = gold - 58 * Hemostatic_buy_num
             if gold <= 0:
                 print("Your account balance is not enough to buy this!")
-                gold = gold + 58  # If balance is not enough, then add the gold back
+                gold = gold + 58 * Hemostatic_buy_num  # If balance is not enough, then add the gold back
+                start = True
+                endProgram()
             else:
                 print("Successfully,Your remaining balance is:", gold)
+                print("You now have", Hemostatic_num,"Hemostatic Agent")
                 Hemostatic = 1
-                Hemostatic_num = Hemostatic_num + 1
+                Hemostatic_num = Hemostatic_num + Hemostatic_buy_num
                 start = True
                 endProgram()
