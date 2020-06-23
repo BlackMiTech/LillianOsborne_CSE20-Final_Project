@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
-# --- Version:0.0.4--- #
+# --- Version:0.0.5--- #
 '''
-Title:
+Title: Kingdom & Unions War.
 Author:Jimmy Wang
 Date: June 21th,2020
 '''
@@ -12,6 +12,7 @@ import time
 import random
 
 Enemy_bot = ["Jason" , "Jimmy", "Aaron", "Charlie", "Annie"]
+
 union = ["[Berserker]","[Forest Archer]","[Knight of light]","[Solitary swordsman]","[Fighting master]","[Bullet expert]"]
 Kingdoms = ["[Fight Nec]","[Dark Archer]","[Skeleton Knight]","[Bloodthirsty swordsman]","[Chief Assassin]","[The king of traps]"]
 
@@ -73,7 +74,7 @@ def checkNumberInt(value):
         return int(value)
     else:
         print("You did not enter the correct numbers!")
-        newNum = input("Please enter a number:")
+        newNum = input("Please enter a number again:")
         return checkNumberInt(newNum)
 
 def game_start():                 #2 wins
@@ -92,13 +93,16 @@ def game_start():                 #2 wins
             user_aggressivity = user_aggressivity + 20
             user_Blood = user_Blood - 15
             enemy_aggressivity = enemy_aggressivity + 2
+            print("You now have equipment your Balisong, your aggressivity has proved to", user_aggressivity,"\n also your enemy blood has proved to", enemy_Blood)
         elif Balisong == 1 and AK47 == 1:
             user_aggressivity = user_aggressivity + 60
             user_Blood = user_Blood - 40
             enemy_aggressivity = enemy_aggressivity + 5
+            print("You now have equipment your Balisong and AK-47, your aggressivity has proved to", user_aggressivity,
+                  "\n also your enemy blood has proved to", enemy_Blood)
         print("===================================The {} Game============================================".format(i+1))
         print("==Our_characters======Enemy_characters==")
-        print(" {}    VS    {} ".format(My_teams[i],enemy_teams[i]))
+        print(" {}   VS  {} ".format(My_teams[i],enemy_teams[i]))
         print("Blood:{}                Blood:{}".format(attribute_01[My_teams[i]][0],attribute_02[enemy_teams[i]][0]))
         print("Aggressivity:{}         Aggressivity:{}".format(attribute_01[My_teams[i]][1],attribute_02[enemy_teams[i]][1]))
         input("----------------------------Press_Enter_To_Continue----------------------------")
@@ -107,7 +111,7 @@ def game_start():                 #2 wins
             enemy_Blood = enemy_Blood - user_aggressivity
             print("You start to attack，[Enemy] remaining blood volume is:{}".format (enemy_Blood))
             print("The enemy start to attacked you，Your team Blood remaining:{}".format (user_Blood))
-            time.sleep(0.5)
+            time.sleep(1)
 
         if user_Blood > 0 and enemy_Blood <= 0:
             scores = scores + 1
@@ -125,7 +129,7 @@ def game_start():                 #2 wins
                 if use_hemostatic == int("1"):
                     user_Blood = user_Blood + 35 # add 35 blood
                     enemy_aggressivity = enemy_aggressivity + 10 # For balancing, the enemy aggressivity will add 10
-                else:
+                if use_hemostatic == int("2"):
                     scores = scores - 1
                     print("Sorry，The enemy has defeated you!")
             else:
@@ -137,7 +141,6 @@ def game_start():                 #2 wins
 
     if scores > 0:
         print("{} wins in three games, you won!!!".format(scores+1))
-        gold = gold + randomgold
     elif scores < 0:
         print("{} wins in three games, you lost!!!".format(scores+1))
     else:
@@ -189,12 +192,14 @@ while start:
     print("Game Description")
     print("The system will automatically select three characters for you and fight against the evil enemies.")
     print("-------------------------------------------")
+    print("Tips: go to the stores buy some weapons!")
     print("""
     1. Enter in the Game.
     2. Settings
     3. Stores
     """)
     mode = checkNumberInt(input("> "))
+    # --- Game Start --- #
     if mode == int("1"):
         chooseteam()
         Order_My_teams_new()
@@ -307,10 +312,10 @@ while start:
                 start = True
                 endProgram()
         if store_buy == int("3"):
-            gold = gold - 50
+            gold = gold - 58
             if gold <= 0:
                 print("Your account balance is not enough to buy this!")
-                gold = gold + 50  # If balance is not enough, then add the gold back
+                gold = gold + 58  # If balance is not enough, then add the gold back
             else:
                 print("Successfully,Your remaining balance is:", gold)
                 Hemostatic = 1
