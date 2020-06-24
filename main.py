@@ -3,7 +3,7 @@
 '''
 Title: Kingdom & Unions War.
 Author:Jimmy Wang
-Date: June 21th,2020
+Date: June 19th,2020
 '''
 
 start = True
@@ -93,7 +93,7 @@ def game_start():                 #2 wins
             user_aggressivity = user_aggressivity + 20
             user_Blood = user_Blood - 15
             enemy_aggressivity = enemy_aggressivity + 2
-            print("You now have equipment your Balisong, your aggressivity has proved to", user_aggressivity,"\n also your enemy blood has proved to", enemy_Blood)
+            print("You now have equipment your Balisong, your aggressivity has proved to", user_aggressivity,".\n Also your enemy blood has proved to", enemy_Blood)
         elif Balisong == 1 and AK47 == 1:
             user_aggressivity = user_aggressivity + 60
             user_Blood = user_Blood - 40
@@ -102,7 +102,7 @@ def game_start():                 #2 wins
                   "\n also your enemy blood has proved to", enemy_Blood)
         print("===================================The {} Game============================================".format(i+1))
         print("==Our_characters======Enemy_characters==")
-        print(" {}   VS  {} ".format(My_teams[i],enemy_teams[i]))
+        print(" {}  VS  {} ".format(My_teams[i],enemy_teams[i]))
         print("Blood:{}                Blood:{}".format(attribute_01[My_teams[i]][0],attribute_02[enemy_teams[i]][0]))
         print("Aggressivity:{}         Aggressivity:{}".format(attribute_01[My_teams[i]][1],attribute_02[enemy_teams[i]][1]))
         input("----------------------------Press_Enter_To_Continue----------------------------")
@@ -132,18 +132,23 @@ def game_start():                 #2 wins
                 if use_hemostatic == int("2"):
                     scores = scores - 1
                     print("Sorry，The enemy has defeated you!")
+
             else:
                 scores = scores - 1
                 print("Sorry，The enemy has defeated you!")
+                gold = gold - randomgold_lose
         else:
             print("Oh, you and the enemy have died together!")
         print("-----------------------")
 
     if scores > 0:
         print("{} wins in three games, you won!!!".format(scores+1))
+        gold = gold + randomgold_win
     elif scores < 0:
         print("{} wins in three games, you lost!!!".format(scores+1))
+        gold = gold - randomgold_lose
     else:
+        gold = gold + randomgold
         print("It was tie!")
 
 # ---Ends---#
@@ -157,7 +162,8 @@ def endProgram():
 
 name = input("Please input your name:")
 randomgold = random.randint(5, 500)
-
+randomgold_win = random.randint(200, 500)
+randomgold_lose = random.randint(50, 200)
 
 # --- ONLY FOR TEST---#
 if name == str("test"):
@@ -197,6 +203,7 @@ while start:
     1. Enter in the Game.
     2. Settings
     3. Stores
+    4. Coming Soon...
     """)
     mode = checkNumberInt(input("> "))
     # --- Game Start --- #
@@ -218,12 +225,12 @@ while start:
             print("Hello,", name)
             print("Your current balance is:", gold)
             print("""
-            Enter "C" to recharge your account.
+            Enter "1" to recharge your account.
             Or 
             Enter anything to back into Menu
             """)
             charge = checkNumberInt(input("> "))
-            if charge == str("C"):
+            if charge == str("1"):
                 print("-------------------------------------")
                 print("This function has not been added yet.")
                 print("-------------------------------------")
@@ -327,3 +334,7 @@ while start:
                 Hemostatic_num = Hemostatic_num + Hemostatic_buy_num
                 start = True
                 endProgram()
+    else:
+        print("Please choose a valid number")
+        start = True
+        endProgram()
